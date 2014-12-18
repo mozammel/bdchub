@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -37,19 +39,34 @@ public class User {
 	private boolean enabled = false;
 	private String authority;
 	
+	@Size(max=60, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	private String fullname;
 
+	@OneToOne
+	@JoinColumn(name="user_profile_id", referencedColumnName="id")
+	private UserProfile userProfile;
+	
 	public User() {
-
+		this.userProfile = new UserProfile();
 	}
 
-	public User(String username, String password, String email,
-			boolean enabled, String authority) {
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	public User(String username, String fullname, String password, String email,
+			boolean enabled, String authority, UserProfile userProfile) {
 		this.username = username;
+		this.fullname = fullname;
 		this.password = password;
 		this.email = email;
 		this.enabled = enabled;
 		this.authority = authority;
+		this.userProfile = userProfile;
 	}
 
 	public String getUsername() {
@@ -110,14 +127,8 @@ public class User {
 		this.fullname = fullname;
 	}
 
-
 	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email
-				+ ", enabled=" + enabled + ", authority=" + authority
-				+ ", fullname=" + fullname + "]";
-	}
+	
 
 	@Override
 	public int hashCode() {
@@ -129,6 +140,10 @@ public class User {
 		result = prime * result + (enabled ? 1231 : 1237);
 		result = prime * result
 				+ ((fullname == null) ? 0 : fullname.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result
+				+ ((userProfile == null) ? 0 : userProfile.hashCode());
 		result = prime * result
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -160,6 +175,16 @@ public class User {
 				return false;
 		} else if (!fullname.equals(other.fullname))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (userProfile == null) {
+			if (other.userProfile != null)
+				return false;
+		} else if (!userProfile.equals(other.userProfile))
+			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -167,7 +192,15 @@ public class User {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password="
+				+ password + ", email=" + email + ", enabled=" + enabled
+				+ ", authority=" + authority + ", fullname=" + fullname
+				+ ", userProfile=" + userProfile + "]";
+	}
+
+
 
 }

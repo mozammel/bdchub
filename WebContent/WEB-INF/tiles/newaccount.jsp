@@ -16,6 +16,18 @@
 
 				<!-- Text input-->
 				<div class="control-group">
+					<label class="control-label" for="fullname">Full Name</label>
+					<div class="controls">
+						<sf:input id="fullname" path="fullname" name="fullname"
+							placeholder="enter full name" class="input-xlarge" type="text" />
+						<sf:errors path="fullname" cssClass="alert-danger"></sf:errors>
+					</div>
+
+				</div>
+
+
+				<!-- Text input-->
+				<div class="control-group">
 					<label class="control-label" for="name">Username</label>
 					<div class="controls">
 						<sf:input id="username" path="username" name="username"

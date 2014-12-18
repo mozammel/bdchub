@@ -1,7 +1,5 @@
 package com.livingoncodes.spring.web.test.tests;
 
-import static org.junit.Assert.*;
-
 import javax.sql.DataSource;
 
 import org.junit.Before;
@@ -15,6 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.dao.UserDao;
+import com.livingoncodes.spring.web.dao.UserProfile;
+import com.livingoncodes.spring.web.dao.UserProfileDao;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -28,14 +28,29 @@ public class UserDaoTests {
 	private UserDao usersDao;
 	
 	@Autowired
+	private UserProfileDao userProfileDao;
+	
+	@Autowired
 	private DataSource dataSource;
+	
+	
+	
+//	private User user1 = new User("hillol", "Hillol Sharkar", "hellothere", "hillol@livingoncodes.com",
+//			true, "ROLE_USER");
+//	private User user2 = new User("mozammel", "Mozammel Haque", "hellohello", "mozammel@livingoncodes.com",
+//			true, "ROLE_ADMIN");
+//	private User user3 = new User("imran", "Hillol Sharkar", "thelionking", "imran@livingoncodes.com",
+//			true, "ROLE_USER");
+//	private User user4 = new User("qasif", "Hillol Sharkar", "showmethemoney", "qasif@livingoncodes.com",
+//			false, "user");
 	
 	@Before
 	public void init() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-		
-		jdbc.execute("delete from users");
-		jdbc.execute("delete from authorities");
+
+		jdbc.execute("delete from status");
+		jdbc.execute("delete from user_profile");
+		jdbc.execute("delete from user");
 		
 	}
 	
@@ -43,7 +58,11 @@ public class UserDaoTests {
 	@Test
 	public void testCreateUser() {
 		
-		User user = new User("mozammel", "hellohello", "mozammel@livingoncodes.com", true, "ROLE_USER");
+		UserProfile userProfile = new UserProfile();
+		
+		
+		
+		User user = new User("mozammel", "Mozammel Haque", "hellohello", "mozammel@livingoncodes.com", true, "ROLE_USER", userProfile);
 		
 		
 		

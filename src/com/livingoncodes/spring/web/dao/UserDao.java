@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-@Component("usersDao")
+@Component("userDao")
 public class UserDao {
 
 	@Autowired
