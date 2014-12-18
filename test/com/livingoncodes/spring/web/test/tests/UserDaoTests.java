@@ -25,7 +25,10 @@ import com.livingoncodes.spring.web.dao.UserProfileDao;
 public class UserDaoTests {
 	
 	@Autowired
-	private UserDao usersDao;
+	private UserDao userDao;
+	
+	@Autowired
+	private UserProfileDao userProfileDao;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -54,19 +57,37 @@ public class UserDaoTests {
 	
 	@Test
 	public void testCreateUser() {
-		
-		
-		
-		
 		UserProfile userProfile = new UserProfile();
 		userProfile.setMobileNo("017138383");
-
 		User user = new User("test", "Test Haque", "hellohello", "mozammel@livingoncodes.com", true, "ROLE_USER");
-
 		user.setUserProfile(userProfile);
+		userDao.create(user);
+	}
+	
+	@Test
+	public void testRetrive() {
+		UserProfile userProfile = new UserProfile();
+		userProfile.setMobileNo("017138383");
+		User user = new User("test", "Test Haque", "hellohello", "mozammel@livingoncodes.com", true, "ROLE_USER");
+		user.setUserProfile(userProfile);
+		userDao.create(user);
+
 		
+		User retrived = userDao.getUser(user.getUsername());
+		System.out.println("**************** Mobile: " + retrived.getUserProfile().getMobileNo());
+	}
+	
+	@Test
+	public void testBiDirectional() {
+		UserProfile userProfile = new UserProfile();
+		userProfile.setMobileNo("017138383");
+		User user = new User("test", "Test Haque", "hellohello", "mozammel@livingoncodes.com", true, "ROLE_USER");
+		user.setUserProfile(userProfile);
+		userDao.create(user);
 		
-		usersDao.create(user);
+		UserProfile retrived = userProfileDao.getUserProfile(user);
+		System.out.println("**************** Username: " + retrived.getUser().getUsername());
+		
 	}
 
 }
