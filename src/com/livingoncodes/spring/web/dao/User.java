@@ -1,7 +1,9 @@
 package com.livingoncodes.spring.web.dao;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -42,14 +44,11 @@ public class User {
 	@Size(max=60, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	private String fullname;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="user_profile_id", referencedColumnName="id")
 	private UserProfile userProfile;
 	
-	public User() {
-		this.userProfile = new UserProfile();
-	}
-
+	
 	public UserProfile getUserProfile() {
 		return userProfile;
 	}
@@ -58,15 +57,17 @@ public class User {
 		this.userProfile = userProfile;
 	}
 
+	public User() {
+	}
+
 	public User(String username, String fullname, String password, String email,
-			boolean enabled, String authority, UserProfile userProfile) {
+			boolean enabled, String authority) {
 		this.username = username;
 		this.fullname = fullname;
 		this.password = password;
 		this.email = email;
 		this.enabled = enabled;
 		this.authority = authority;
-		this.userProfile = userProfile;
 	}
 
 	public String getUsername() {
@@ -143,8 +144,6 @@ public class User {
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result
-				+ ((userProfile == null) ? 0 : userProfile.hashCode());
-		result = prime * result
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -180,11 +179,6 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (userProfile == null) {
-			if (other.userProfile != null)
-				return false;
-		} else if (!userProfile.equals(other.userProfile))
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -198,7 +192,7 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password="
 				+ password + ", email=" + email + ", enabled=" + enabled
 				+ ", authority=" + authority + ", fullname=" + fullname
-				+ ", userProfile=" + userProfile + "]";
+				+ ", userProfile=" + "]";
 	}
 
 

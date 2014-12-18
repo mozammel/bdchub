@@ -28,9 +28,6 @@ public class UserDaoTests {
 	private UserDao usersDao;
 	
 	@Autowired
-	private UserProfileDao userProfileDao;
-	
-	@Autowired
 	private DataSource dataSource;
 	
 	
@@ -58,12 +55,15 @@ public class UserDaoTests {
 	@Test
 	public void testCreateUser() {
 		
+		
+		
+		
 		UserProfile userProfile = new UserProfile();
-		
-		
-		
-		User user = new User("mozammel", "Mozammel Haque", "hellohello", "mozammel@livingoncodes.com", true, "ROLE_USER", userProfile);
-		
+		userProfile.setMobileNo("017138383");
+
+		User user = new User("test", "Test Haque", "hellohello", "mozammel@livingoncodes.com", true, "ROLE_USER");
+
+		user.setUserProfile(userProfile);
 		
 		
 		usersDao.create(user);

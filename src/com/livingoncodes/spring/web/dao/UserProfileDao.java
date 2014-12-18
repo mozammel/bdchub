@@ -33,7 +33,7 @@ public class UserProfileDao {
 	public UserProfile getUserProfile(User user) {
 		Criteria crit = session().createCriteria(UserProfile.class);
 		
-		crit.add(Restrictions.idEq(user.getUserProfile().getId()));
+//		crit.add(Restrictions.idEq(user.getUserProfile().getId()));
 		
 		UserProfile userProfile = (UserProfile) crit.uniqueResult();
 
