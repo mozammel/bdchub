@@ -32,7 +32,6 @@ public class UserProfile {
 	
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Size(min=5, max=20, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
-	@Pattern(regexp="^\\w{4,}$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="mobileno")
 	private String mobileNo;
 	
