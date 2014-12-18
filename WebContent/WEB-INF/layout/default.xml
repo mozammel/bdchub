@@ -44,6 +44,11 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/statuscreated.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="statusdeleted" extends="status.base">
+		<put-attribute name="title" value="Status Deleted"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/statusdeleted.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="denied" extends="status.base">
 		<put-attribute name="title" value="Access Denied"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/denied.jsp"></put-attribute>
