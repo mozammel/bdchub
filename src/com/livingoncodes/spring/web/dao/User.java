@@ -1,5 +1,10 @@
 package com.livingoncodes.spring.web.dao;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -7,11 +12,18 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.livingoncodes.spring.web.validation.ValidEmail;
 
+@Entity
+@Table(name="user")
 public class User {
+	
+	@Id
+	@GeneratedValue
+	private int id; 
 
-	@NotBlank
-	@Size(min=4, max=15)
-	@Pattern(regexp="^\\w{4,}$")
+	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Size(min=4, max=15, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Pattern(regexp="^\\w{4,}$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Column(name="username")
 	private String username;
 	
 	@NotBlank
@@ -24,6 +36,8 @@ public class User {
 	
 	private boolean enabled = false;
 	private String authority;
+	
+	private String fullname;
 
 	public User() {
 
@@ -77,5 +91,83 @@ public class User {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email
+				+ ", enabled=" + enabled + ", authority=" + authority
+				+ ", fullname=" + fullname + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((authority == null) ? 0 : authority.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + (enabled ? 1231 : 1237);
+		result = prime * result
+				+ ((fullname == null) ? 0 : fullname.hashCode());
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (authority == null) {
+			if (other.authority != null)
+				return false;
+		} else if (!authority.equals(other.authority))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (enabled != other.enabled)
+			return false;
+		if (fullname == null) {
+			if (other.fullname != null)
+				return false;
+		} else if (!fullname.equals(other.fullname))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	
+	
 
 }

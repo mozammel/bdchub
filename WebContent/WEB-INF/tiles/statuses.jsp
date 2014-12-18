@@ -8,14 +8,14 @@
 				<th>id</th>
 				<th>Name</th>
 				<th>Email</th>
-				<th>Notice</th>
+				<th>Status</th>
 			</tr>
-			<c:forEach var="notice" items="${notices}">
+			<c:forEach var="status" items="${statuses}">
 				<tr>
-					<td><c:out value="${notice.id}"></c:out></td>
-					<td><c:out value="${notice.name}"></c:out></td>
-					<td><c:out value="${notice.email}"></c:out></td>
-					<td><c:out value="${notice.text}"></c:out></td>
+					<td><c:out value="${status.id}"></c:out></td>
+					<td><c:out value="${status.user.name}"></c:out></td>
+					<td><c:out value="${status.user.email}"></c:out></td>
+					<td><c:out value="${status.text}"></c:out></td>
 				</tr>
 
 

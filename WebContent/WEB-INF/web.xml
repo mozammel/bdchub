@@ -11,12 +11,12 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>notices</display-name>
-    <servlet-name>notices</servlet-name>
+    <display-name>bdchub</display-name>
+    <servlet-name>bdchub</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>notices</servlet-name>
+    <servlet-name>bdchub</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   <description>Spring Tutorial</description>

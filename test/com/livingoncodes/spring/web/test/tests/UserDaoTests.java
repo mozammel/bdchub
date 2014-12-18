@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.livingoncodes.spring.web.dao.User;
-import com.livingoncodes.spring.web.dao.UsersDao;
+import com.livingoncodes.spring.web.dao.UserDao;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -25,7 +25,7 @@ import com.livingoncodes.spring.web.dao.UsersDao;
 public class UserDaoTests {
 	
 	@Autowired
-	private UsersDao usersDao;
+	private UserDao usersDao;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -47,7 +47,7 @@ public class UserDaoTests {
 		
 		
 		
-		assertTrue("User creation should return true", usersDao.create(user));
+		usersDao.create(user);
 	}
 
 }

@@ -7,16 +7,16 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.livingoncodes.spring.web.dao.User;
-import com.livingoncodes.spring.web.dao.UsersDao;
+import com.livingoncodes.spring.web.dao.UserDao;
 
 @Service("usersService")
 public class UsersService {
 	
-	private UsersDao usersDao;
+	private UserDao usersDao;
 
 	
 	@Autowired
-	public void setUsersDao(UsersDao usersDao) {
+	public void setUsersDao(UserDao usersDao) {
 		this.usersDao = usersDao;
 	}
 

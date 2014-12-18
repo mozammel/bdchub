@@ -20,7 +20,7 @@
     <link href="<c:url value='/static/lib/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<c:url value='/static/css/notices-main.css' />" rel="stylesheet">
+    <link href="<c:url value='/static/css/bdchub-main.css' />" rel="stylesheet">
 
     <script src="<c:url value='/static/js/jquery.min.js' />"></script>
     <script src="<c:url value='/static/lib/bootstrap/js/bootstrap.min.js' />"></script>

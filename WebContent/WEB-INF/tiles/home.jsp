@@ -5,8 +5,8 @@
 
 
 
-	<p><a href="${pageContext.request.contextPath}/notices">Show current notices</a></p>	
-	<p><a href="${pageContext.request.contextPath}/createnotice">Create Notice</a></p>	
+	<p><a href="${pageContext.request.contextPath}/statuses">Show current statuses</a></p>	
+	<p><a href="${pageContext.request.contextPath}/createstatus">Create Status</a></p>	
 
 	<sec:authorize access="!isAuthenticated()">
 		<p><a href="<c:url value='/login' />">Log in</a></p>

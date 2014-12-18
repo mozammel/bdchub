@@ -54,7 +54,7 @@
 					<c:if test="${param.error != null}">
 						Incorrect Username or Password provided
 					</c:if>
-					
+									
 				</div>
 
 				<!-- Button -->
@@ -69,5 +69,4 @@
 		</form>
 		
 		<p><a href="<c:url value='/newaccount' />">Create new account</a></p>
-
 	</div>
