@@ -13,7 +13,7 @@
 			<c:forEach var="status" items="${statuses}">
 				<tr>
 					<td><c:out value="${status.id}"></c:out></td>
-					<td><c:out value="${status.user.name}"></c:out></td>
+					<td><c:out value="${status.user.username}"></c:out></td>
 					<td><c:out value="${status.user.email}"></c:out></td>
 					<td><c:out value="${status.text}"></c:out></td>
 				</tr>

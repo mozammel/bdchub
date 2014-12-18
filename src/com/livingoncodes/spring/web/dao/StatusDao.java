@@ -46,7 +46,7 @@ public class StatusDao {
 		
 		crit.createAlias("user", "u");
 		crit.add(Restrictions.eq("u.enabled", true));
-		crit.add(Restrictions.eq("u.name", name));
+		crit.add(Restrictions.eq("u.username", name));
 		
 		return crit.list();
 

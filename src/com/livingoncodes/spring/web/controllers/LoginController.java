@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.livingoncodes.spring.web.dao.User;
-import com.livingoncodes.spring.web.service.UsersService;
+import com.livingoncodes.spring.web.service.UserService;
 
 @Controller
 public class LoginController {
 
-	private UsersService usersService;
+	private UserService usersService;
 
 	@Autowired
-	public void setUsersService(UsersService usersService) {
+	public void setUsersService(UserService usersService) {
 		this.usersService = usersService;
 	}
 

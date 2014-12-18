@@ -58,5 +58,15 @@ public class UserDao {
 		
 		
 	}
+
+	public User getUser(String username) {
+		Criteria crit = session().createCriteria(User.class);
+		
+		crit.add(Restrictions.eq("username", username));
+		
+		User user = (User) crit.uniqueResult();
+
+		return user;
+	}
 	
 }

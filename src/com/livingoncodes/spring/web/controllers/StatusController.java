@@ -14,12 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.livingoncodes.spring.web.dao.FormValidationGroup;
 import com.livingoncodes.spring.web.dao.Status;
+import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.service.StatusService;
+import com.livingoncodes.spring.web.service.UserService;
 
 @Controller
 public class StatusController {
 	
 	private StatusService statusService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	public void setStatusService(StatusService statusService) {
@@ -75,8 +80,9 @@ public class StatusController {
 		}
 		
 		if(delete == null) {
-			String username = principal.getName();	
-			status.getUser().setUsername(username);
+			String username = principal.getName();
+			User loggedInUser = userService.getUser(username);
+			status.getUser().setId(loggedInUser.getId());
 			statusService.saveOrUpdate(status);
 			return "statuscreated";
 		} else {
