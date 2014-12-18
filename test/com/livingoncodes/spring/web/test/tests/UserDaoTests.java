@@ -46,8 +46,8 @@ public class UserDaoTests {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 
 		jdbc.execute("delete from status");
-		jdbc.execute("delete from user_profile");
 		jdbc.execute("delete from user");
+		jdbc.execute("delete from user_profile");
 		
 	}
 	
