@@ -1,7 +1,17 @@
 package com.livingoncodes.spring.web.test.tests;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
 import javax.sql.DataSource;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +25,7 @@ import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.dao.UserDao;
 import com.livingoncodes.spring.web.dao.UserProfile;
 import com.livingoncodes.spring.web.dao.UserProfileDao;
+
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -87,6 +98,27 @@ public class UserDaoTests {
 		
 		UserProfile retrived = userProfileDao.getUserProfile(user);
 		System.out.println("**************** Username: " + retrived.getUser().getUsername());
+		
+	}
+	
+	@Test
+	public void testDocumentRead() {
+
+		try {
+		 InputStream inp = new FileInputStream("test/BDCyclistsRegistrationForm.xlsx");
+		    //InputStream inp = new FileInputStream("workbook.xlsx");
+
+		    Workbook wb = WorkbookFactory.create(inp);
+		    Sheet sheet = wb.getSheetAt(0);
+		    Row row = sheet.getRow(2);
+		    Cell cell = row.getCell(3);
+		    
+		    System.out.println("******************" + cell.getStringCellValue());
+		    
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
 		
 	}
 
