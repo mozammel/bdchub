@@ -2,11 +2,13 @@ package com.livingoncodes.spring.web.test.tests;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
 import javax.sql.DataSource;
 
-import org.apache.poi.ss.usermodel.Cell;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -23,7 +25,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.dao.UserDao;
 import com.livingoncodes.spring.web.dao.UserProfile;
-import com.livingoncodes.spring.web.dao.UserProfileDao;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -117,21 +118,26 @@ public class UserDaoTests {
 			Sheet sheet = wb.getSheetAt(0);
 
 			Iterator<Row> rowIterator = sheet.iterator();
-			while (rowIterator.hasNext()) {
-				Row row = rowIterator.next();
+			Row row = rowIterator.next();
 
+			int count = 0;
+			while (rowIterator.hasNext()) {
+				row = rowIterator.next();
+
+				
 				try {
-						String fullname = row.getCell(1).getStringCellValue();
-						String birthdate = row.getCell(2).getStringCellValue();
-						String email = row.getCell(3).getStringCellValue();
+						String fullname = CellValueUtil.getStringValue(row.getCell(1));
+						String birthdate = CellValueUtil.getStringValue(row.getCell(2));
+						String email = CellValueUtil.getStringValue(row.getCell(3));
 
 						String mobile = CellValueUtil.getStringValue(row.getCell(4));
-						String bloodgroup = CellValueUtil.getStringValue(row.getCell(5));;
-						String address = CellValueUtil.getStringValue(row.getCell(6));;
+						String bloodgroup = CellValueUtil.getStringValue(row.getCell(6));;
+						String address = CellValueUtil.getStringValue(row.getCell(7));;
 						// skip 7, 8, 9, 10, 11
 
-						String emergency = CellValueUtil.getStringValue(row.getCell(12));;
+						String emergency = CellValueUtil.getStringValue(row.getCell(13));;
 
+						String sex = CellValueUtil.getStringValue(row.getCell(16));;
 						
 						System.out.println("Fullname: " + fullname);
 						System.out.println("Birthdate: " + birthdate);
@@ -139,19 +145,32 @@ public class UserDaoTests {
 						System.out.println("mobile: " + mobile);
 						System.out.println("Bloodgroup: " + bloodgroup);
 						System.out.println("Address: " + address);
+						System.out.println("Emergency:" + emergency);
+						System.out.println("Sex:" + sex);
+						
+						UserProfile userProfile = new UserProfile();
+						
+						
+						
+						userProfile.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(birthdate));
+						userProfile.setAddress(address);
+						userProfile.setMobileNo(mobile);
+						userProfile.setBloodGroup(bloodgroup);
+						userProfile.setEmergency(emergency);
+						
+						userProfile.setSex(sex.equalsIgnoreCase("Male") ? 0 : 1);
+						
+						// create temp password
+						
+						String password = RandomStringUtils.randomAlphanumeric(5); 
+						userProfile.setTemppass(password);
+						
+						User user = new User("bdcyclist" + count++, fullname, password,
+								email, false, "ROLE_USER");
+						user.setUserProfile(userProfile);
 
-//						UserProfile userProfile = new UserProfile();
-//						userProfile.setAddress(address);
-//						userProfile.setMobileNo(mobile);
-//						userProfile.setBloodGroup(bloodgroup);
-//						userProfile.setEmergency(emergency);
-//
-//						User user = new User(email, fullname, "testtest",
-//								email, true, "ROLE_USER");
-//						user.setUserProfile(userProfile);
-//
-//
-//						userDao.create(user);
+
+						userDao.create(user);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}

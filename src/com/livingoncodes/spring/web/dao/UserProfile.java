@@ -1,6 +1,6 @@
 package com.livingoncodes.spring.web.dao;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,6 +49,8 @@ public class UserProfile {
 	@Column(name="facebookprofile")
 	private String facebookProfile;
 	
+	private String temppass;
+	
 	@OneToOne(mappedBy="userProfile", cascade=CascadeType.ALL)
 	private User user;
 
@@ -58,6 +60,16 @@ public class UserProfile {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	
+	
+	public String getTemppass() {
+		return temppass;
+	}
+
+	public void setTemppass(String temppass) {
+		this.temppass = temppass;
 	}
 
 	public int getId() {
