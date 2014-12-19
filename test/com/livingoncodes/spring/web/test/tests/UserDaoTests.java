@@ -36,8 +36,8 @@ public class UserDaoTests {
 	@Autowired
 	private UserDao userDao;
 
-	@Autowired
-	private UserProfileDao userProfileDao;
+//	@Autowired
+//	private UserProfileDao userProfileDao;
 
 	@Autowired
 	private DataSource dataSource;
@@ -125,59 +125,38 @@ public class UserDaoTests {
 						String birthdate = row.getCell(2).getStringCellValue();
 						String email = row.getCell(3).getStringCellValue();
 
-						String mobile = "";
-						if (row.getCell(4).getCellType() == Cell.CELL_TYPE_NUMERIC) {
-							mobile = String.valueOf(row.getCell(4)
-									.getNumericCellValue());
-						} else {
-							mobile = row.getCell(4).getStringCellValue();
-						}
-						String bloodgroup = row.getCell(5) == null ? "NA":row.getCell(5).getStringCellValue();
-						String address = row.getCell(6) == null ? "NA":row.getCell(6).getStringCellValue();
+						String mobile = CellValueUtil.getStringValue(row.getCell(4));
+						String bloodgroup = CellValueUtil.getStringValue(row.getCell(5));;
+						String address = CellValueUtil.getStringValue(row.getCell(6));;
 						// skip 7, 8, 9, 10, 11
 
-						String emergency = "";
-						if (row.getCell(12).getCellType() == Cell.CELL_TYPE_NUMERIC) {
-							emergency = String.valueOf(row.getCell(12)
-									.getNumericCellValue());
-						} else {
-							emergency = row.getCell(12).getStringCellValue();
-						}
+						String emergency = CellValueUtil.getStringValue(row.getCell(12));;
 
-						UserProfile userProfile = new UserProfile();
-						userProfile.setAddress(address);
-						userProfile.setMobileNo(mobile);
-						userProfile.setBloodGroup(bloodgroup);
-						userProfile.setEmergency(emergency);
+						
+						System.out.println("Fullname: " + fullname);
+						System.out.println("Birthdate: " + birthdate);
+						System.out.println("email: " + email);
+						System.out.println("mobile: " + mobile);
+						System.out.println("Bloodgroup: " + bloodgroup);
+						System.out.println("Address: " + address);
 
-						User user = new User(email, fullname, "testtest",
-								email, true, "ROLE_USER");
-						user.setUserProfile(userProfile);
-
-
-						userDao.create(user);
+//						UserProfile userProfile = new UserProfile();
+//						userProfile.setAddress(address);
+//						userProfile.setMobileNo(mobile);
+//						userProfile.setBloodGroup(bloodgroup);
+//						userProfile.setEmergency(emergency);
+//
+//						User user = new User(email, fullname, "testtest",
+//								email, true, "ROLE_USER");
+//						user.setUserProfile(userProfile);
+//
+//
+//						userDao.create(user);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 
-				// For each row, iterate through each columns
-				// Iterator<Cell> cellIterator = row.cellIterator();
-				// while (cellIterator.hasNext()) {
-				//
-				// Cell cell = cellIterator.next();
-				//
-				// switch (cell.getCellType()) {
-				// case Cell.CELL_TYPE_BOOLEAN:
-				// System.out.print(cell.getBooleanCellValue() + "\t\t");
-				// break;
-				// case Cell.CELL_TYPE_NUMERIC:
-				// System.out.print(cell.getNumericCellValue() + "\t\t");
-				// break;
-				// case Cell.CELL_TYPE_STRING:
-				// System.out.print(cell.getStringCellValue() + "\t\t");
-				// break;
-				// }
-				// }
+
 			}
 
 		} catch (Exception ex) {
