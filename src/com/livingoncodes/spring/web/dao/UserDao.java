@@ -39,19 +39,22 @@ public class UserDao {
 	}
 	
 	private String getPasswordById(int id) {
-		Criteria crit = session().createCriteria(User.class);
+		Session session = sessionFactory.openSession();
+		
+		Criteria crit = session.createCriteria(User.class);
 		
 		crit.add(Restrictions.idEq(id));
 		
 		User retrived = (User) crit.uniqueResult();
+		
+		session.close();
 		
 		return retrived.getPassword();
 	}
 	
 	public void update(User user) {
 
-		
-		if(user.getPassword() != "" || user.getPassword() != null) {
+		if(user.getPassword().length() > 3) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 		} else {
 			user.setPassword(getPasswordById(user.getId()));
