@@ -36,8 +36,13 @@ public class UserDao {
 		if(!emailExists(user.getEmail())) {
 			session().save(user);
 		}
+	}
+	
+	public void update(User user) {
 		
+		System.out.println("User id: ************************* : " + user.getId());
 		
+		session().saveOrUpdate(user);
 		
 	}
 	

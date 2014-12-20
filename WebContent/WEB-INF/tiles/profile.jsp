@@ -14,6 +14,13 @@
 			<!-- Form Name -->
 			<legend>Update Profile</legend>
 
+			<sf:input type="hidden" name="id" path="id" />
+			<sf:input type="hidden" name="enabled" path="enabled" />
+			<sf:input type="hidden" name="authority" path="authority" />
+			<sf:input type="hidden" name="userProfile.id" path="userProfile.id" />
+			
+
+
 			<!-- Text input-->
 			<div class="control-group">
 				<label class="control-label" for="fullname">Full Name</label>
@@ -89,8 +96,8 @@
 
 			<!-- Text input-->
 			<div class="control-group">
-				<label class="control-label" for="userProfile.bloodGroup">Birth
-					Date</label>
+				<label class="control-label" for="userProfile.bloodGroup">Blood
+					Group</label>
 				<div class="controls">
 					<sf:input id="userProfile.bloodGroup" path="userProfile.bloodGroup"
 						name="userProfile.bloodGroup" placeholder="bloodGroup"

@@ -48,7 +48,7 @@ public class ProfileController {
 
 		System.out.println(user);
 		
-//		userService.saveOrUpdate(user);
+		userService.update(user);
 		return "profileupdated";
 	}
 

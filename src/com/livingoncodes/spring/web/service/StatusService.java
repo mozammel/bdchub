@@ -55,8 +55,8 @@ public class StatusService {
 		return statuses.get(0);
 	}
 
-	public void saveOrUpdate(Status statis) {
-			statusDao.saveOrUpdate(statis);
+	public void saveOrUpdate(Status status) {
+			statusDao.saveOrUpdate(status);
 	}
 
 	public void delete(int id) {

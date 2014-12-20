@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.dao.UserDao;
 
-@Service("usersService")
+@Service("userService")
 public class UserService {
 	
 	private UserDao userDao;
@@ -44,7 +44,9 @@ public class UserService {
 	}
 
 
-
+	public void update(User user) {
+		userDao.update(user);
+	}
 
 
 
