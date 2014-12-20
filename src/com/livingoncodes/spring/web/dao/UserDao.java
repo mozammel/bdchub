@@ -38,11 +38,26 @@ public class UserDao {
 		}
 	}
 	
+	private String getPasswordById(int id) {
+		Criteria crit = session().createCriteria(User.class);
+		
+		crit.add(Restrictions.idEq(id));
+		
+		User retrived = (User) crit.uniqueResult();
+		
+		return retrived.getPassword();
+	}
+	
 	public void update(User user) {
+
 		
-		System.out.println("User id: ************************* : " + user.getId());
+		if(user.getPassword() != "" || user.getPassword() != null) {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+		} else {
+			user.setPassword(getPasswordById(user.getId()));
+		}
 		
-		session().saveOrUpdate(user);
+		session().update(user);
 		
 	}
 	

@@ -19,6 +19,7 @@
 			<sf:input type="hidden" name="authority" path="authority" />
 			<sf:input type="hidden" name="userProfile.id" path="userProfile.id" />
 			
+			
 
 
 			<!-- Text input-->
