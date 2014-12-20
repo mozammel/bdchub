@@ -32,7 +32,7 @@ public class User {
 	
 	@NotBlank
 	@Pattern(regexp="^\\S+$")
-	@Size(min=8, max=15)
+	@Size(min=4, max=15)
 	private String password;
 	
 	@ValidEmail

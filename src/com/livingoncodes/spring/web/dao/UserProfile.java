@@ -51,6 +51,8 @@ public class UserProfile {
 	
 	private String temppass;
 	
+	private String secret;
+	
 	@OneToOne(mappedBy="userProfile", cascade=CascadeType.ALL)
 	private User user;
 
@@ -64,6 +66,14 @@ public class UserProfile {
 
 	
 	
+	public String getSecret() {
+		return secret;
+	}
+
+	public void setSecret(String secret) {
+		this.secret = secret;
+	}
+
 	public String getTemppass() {
 		return temppass;
 	}

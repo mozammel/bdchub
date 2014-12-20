@@ -13,6 +13,10 @@
 	</sec:authorize>
 	
 	<sec:authorize access="isAuthenticated()">
+		<p><a href="<c:url value='/profile' />">User Profile</a></p>
+	</sec:authorize>
+	
+	<sec:authorize access="isAuthenticated()">
 		<p><a href="<c:url value='/j_spring_security_logout' />">Log out</a></p>
 	</sec:authorize>
 	

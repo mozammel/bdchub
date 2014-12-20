@@ -33,6 +33,16 @@
 		<put-attribute name="title" value="Account Created"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/accountcreated.jsp"></put-attribute>
 	</definition>
+
+	<definition name="profile" extends="status.base">
+		<put-attribute name="title" value="User Profile"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/profile.jsp"></put-attribute>
+	</definition>
+
+	<definition name="profileupdated" extends="status.base">
+		<put-attribute name="title" value="User Profile"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/profileupdated.jsp"></put-attribute>
+	</definition>
 	
 	<definition name="createstatus" extends="status.base">
 		<put-attribute name="title" value="Create Status"></put-attribute>

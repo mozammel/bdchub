@@ -183,6 +183,8 @@ public class UserDaoTests {
 						String password = RandomStringUtils.randomAlphanumeric(5); 
 						userProfile.setTemppass(password);
 						
+						userProfile.setSecret(RandomStringUtils.randomAlphanumeric(16));
+						
 						User user = new User("bdcyclist" + count++, fullname, password,
 								email, false, "ROLE_USER");
 						user.setUserProfile(userProfile);
