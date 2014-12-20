@@ -33,10 +33,28 @@ public class UserDao {
 
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
-		session().save(user);
+		if(!emailExists(user.getEmail())) {
+			session().save(user);
+		}
+		
+		
 		
 	}
+	
+	
+	public boolean emailExists(String email) {
+		
+		Criteria crit = session().createCriteria(User.class);
+		
+		crit.add(Restrictions.eq("email", email));
+		
+		User user = (User) crit.uniqueResult();
+		
+		return user != null;
+				
+	}
 
+	
 	public boolean exists(String username) {
 		
 		Criteria crit = session().createCriteria(User.class);

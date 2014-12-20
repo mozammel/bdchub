@@ -3,6 +3,7 @@ package com.livingoncodes.spring.web.test.tests;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.SecureRandom;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
@@ -25,6 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.dao.UserDao;
 import com.livingoncodes.spring.web.dao.UserProfile;
+import com.livingoncodes.spring.web.dao.UserProfileDao;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -37,8 +39,10 @@ public class UserDaoTests {
 	@Autowired
 	private UserDao userDao;
 
-//	@Autowired
-//	private UserProfileDao userProfileDao;
+	
+	
+	@Autowired
+	private UserProfileDao userProfileDao;
 
 	@Autowired
 	private DataSource dataSource;
@@ -66,45 +70,44 @@ public class UserDaoTests {
 
 	}
 
-	// @Test
-	// public void testCreateUser() {
-	// UserProfile userProfile = new UserProfile();
-	// userProfile.setMobileNo("017138383");
-	// User user = new User("test", "Test Haque", "hellohello",
-	// "mozammel@livingoncodes.com", true, "ROLE_USER");
-	// user.setUserProfile(userProfile);
-	// userDao.create(user);
-	// }
-	//
-	// @Test
-	// public void testRetrive() {
-	// UserProfile userProfile = new UserProfile();
-	// userProfile.setMobileNo("017138383");
-	// User user = new User("test", "Test Haque", "hellohello",
-	// "mozammel@livingoncodes.com", true, "ROLE_USER");
-	// user.setUserProfile(userProfile);
-	// userDao.create(user);
-	//
-	//
-	// User retrived = userDao.getUser(user.getUsername());
-	// System.out.println("**************** Mobile: " +
-	// retrived.getUserProfile().getMobileNo());
-	// }
-	//
-	// @Test
-	// public void testBiDirectional() {
-	// UserProfile userProfile = new UserProfile();
-	// userProfile.setMobileNo("017138383");
-	// User user = new User("test", "Test Haque", "hellohello",
-	// "mozammel@livingoncodes.com", true, "ROLE_USER");
-	// user.setUserProfile(userProfile);
-	// userDao.create(user);
-	//
-	// UserProfile retrived = userProfileDao.getUserProfile(user);
-	// System.out.println("**************** Username: " +
-	// retrived.getUser().getUsername());
-	//
-	// }
+	@Test
+	public void testCreateUser() {
+		UserProfile userProfile = new UserProfile();
+		userProfile.setMobileNo("017138383");
+		User user = new User("test", "Test Haque", "hellohello",
+				"mozammel@livingoncodes.com", true, "ROLE_USER");
+		user.setUserProfile(userProfile);
+		userDao.create(user);
+	}
+
+	@Test
+	public void testRetrive() {
+		UserProfile userProfile = new UserProfile();
+		userProfile.setMobileNo("017138383");
+		User user = new User("test", "Test Haque", "hellohello",
+				"mozammel@livingoncodes.com", true, "ROLE_USER");
+		user.setUserProfile(userProfile);
+		userDao.create(user);
+
+		User retrived = userDao.getUser(user.getUsername());
+		System.out.println("**************** Mobile: "
+				+ retrived.getUserProfile().getMobileNo());
+	}
+
+	@Test
+	public void testBiDirectional() {
+		UserProfile userProfile = new UserProfile();
+		userProfile.setMobileNo("017138383");
+		User user = new User("test", "Test Haque", "hellohello",
+				"mozammel@livingoncodes.com", true, "ROLE_USER");
+		user.setUserProfile(userProfile);
+		userDao.create(user);
+
+		UserProfile retrived = userProfileDao.getUserProfile(user);
+		System.out.println("**************** Username: "
+				+ retrived.getUser().getUsername());
+
+	}
 
 	@Test
 	public void testDocumentRead() {
@@ -151,8 +154,23 @@ public class UserDaoTests {
 						UserProfile userProfile = new UserProfile();
 						
 						
-						
-						userProfile.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(birthdate));
+						try {
+							userProfile.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(birthdate));
+						} catch(ParseException ex) {
+							try {
+								userProfile.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(birthdate));
+							} catch(ParseException ext) {
+								try {
+									userProfile.setBirthDate(new SimpleDateFormat("d.M.yyyy").parse(birthdate));
+								} catch(ParseException ex3) {
+									try {
+										userProfile.setBirthDate(new SimpleDateFormat("d/M/yyyy").parse(birthdate));
+									} catch(ParseException ex4) {
+										System.out.println(ex4);
+									}
+								}
+							}
+						}
 						userProfile.setAddress(address);
 						userProfile.setMobileNo(mobile);
 						userProfile.setBloodGroup(bloodgroup);

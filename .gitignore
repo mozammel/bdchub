@@ -13,3 +13,5 @@ target/
 *.ipr
 *.iws
 .idea
+
+test/BDCyclistsRegistrationForm.xlsx

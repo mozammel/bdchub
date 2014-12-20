@@ -36,6 +36,7 @@ public class User {
 	private String password;
 	
 	@ValidEmail
+	@Column(name="email", unique=true)
 	private String email;
 	
 	private boolean enabled = false;
