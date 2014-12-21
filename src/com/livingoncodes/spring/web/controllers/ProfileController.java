@@ -41,6 +41,20 @@ public class ProfileController {
 	public String doCreate(Model model,
 			@Validated(value=FormValidationGroup.class) User user,
 			BindingResult result, Principal principal) {
+		
+		/**
+		 * If the password entered on the profile update form is blank
+		 * allow saving the user. This special condition is handled at
+		 * UserDao where we check if password is size 0, we get the current
+		 * password from DB and populate the user bean before saving it
+		 */
+		
+		System.out.println("Model:::::::::::::::::::::::" + model);
+		
+//		if(user.getPassword().length() == 0) {
+//			userService.update(user);
+//			return "profileupdated";
+//		}
 
 		if (result.hasErrors()) {
 			return "profile";

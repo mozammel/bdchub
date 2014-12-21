@@ -82,6 +82,18 @@
 			<hr />
 
 
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="userProfile.birthDate">Birth Date</label>
+				<div class="controls">
+					<sf:input id="userProfile.birthDate" path="userProfile.birthDate"
+						name="userProfile.birthDate" placeholder="birthDate"
+						class="input-xlarge" type="date" />
+					<sf:errors path="userProfile.birthDate" cssClass="alert-danger"></sf:errors>
+
+				</div>
+			</div>
+
 
 			<!-- Text input-->
 			<div class="control-group">
@@ -108,23 +120,21 @@
 				</div>
 			</div>
 			
-					<!-- Textarea -->
+			<!-- Textarea -->
 			<div class="control-group">
 				<label class="control-label" for="userProfile.address">Address</label>
 				<div class="controls">
 					<sf:textarea id="userProfile.address" path="userProfile.address" name="userProfile.address"></sf:textarea>
 					<sf:errors path="userProfile.address" cssClass="alert-danger"></sf:errors>
-
 				</div>
 			</div>
 
-					<!-- Textarea -->
+			<!-- Textarea -->
 			<div class="control-group">
 				<label class="control-label" for="userProfile.emergency">Emergency</label>
 				<div class="controls">
 					<sf:textarea id="userProfile.emergency" path="userProfile.emergency" name="userProfile.emergency"></sf:textarea>
 					<sf:errors path="userProfile.emergency" cssClass="alert-danger"></sf:errors>
-
 				</div>
 			</div>
 			

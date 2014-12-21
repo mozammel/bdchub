@@ -180,7 +180,7 @@ public class UserDaoTests {
 						
 						// create temp password
 						
-						String password = RandomStringUtils.randomAlphanumeric(5); 
+						String password = RandomStringUtils.randomAlphanumeric(6); 
 						userProfile.setTemppass(password);
 						
 						userProfile.setSecret(RandomStringUtils.randomAlphanumeric(16));
