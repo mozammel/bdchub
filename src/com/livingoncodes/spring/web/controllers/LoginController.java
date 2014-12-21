@@ -2,10 +2,10 @@ package com.livingoncodes.spring.web.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +22,9 @@ public class LoginController {
 
 	private UserService usersService;
 
+	@Autowired
+	private MailSender mailSender;
+	
 	@Autowired
 	public void setUsersService(UserService usersService) {
 		this.usersService = usersService;
@@ -56,6 +59,24 @@ public class LoginController {
 		model.addAttribute("users", users);
 
 		return "admin";
+	}
+	
+	@RequestMapping("/sendmessage")
+	public String sendMessage() {
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setFrom("no-reply@bdcyclists.com");
+		mail.setTo("mozammel@gmail.com");
+		mail.setSubject("Testing send message");
+		mail.setText("Hello email");
+		
+		try {
+			mailSender.send(mail);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("cant send message");
+		}
+		
+		return "home";
 	}
 
 	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
