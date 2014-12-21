@@ -39,15 +39,13 @@ public class ProfileController {
 
 	@RequestMapping(value = "/doupdateprofile", method = RequestMethod.POST)
 	public String doCreate(Model model,
-			@Validated(value = FormValidationGroup.class) User user,
+			@Validated(value=FormValidationGroup.class) User user,
 			BindingResult result, Principal principal) {
 
 		if (result.hasErrors()) {
 			return "profile";
 		}
 
-		System.out.println(user);
-		
 		userService.update(user);
 		return "profileupdated";
 	}

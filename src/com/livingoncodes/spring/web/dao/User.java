@@ -30,12 +30,12 @@ public class User {
 	@Column(name="username")
 	private String username;
 	
-	@NotBlank
-	@Pattern(regexp="^\\S+$")
-	@Size(min=4, max=15)
+	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Pattern(regexp="^\\S+$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Size(min=5, max=15, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	private String password;
 	
-	@ValidEmail
+	@ValidEmail(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="email", unique=true)
 	private String email;
 	
