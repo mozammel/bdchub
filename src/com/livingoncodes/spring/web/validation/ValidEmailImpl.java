@@ -4,10 +4,14 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.livingoncodes.spring.web.service.UserService;
 
 public class ValidEmailImpl implements ConstraintValidator<ValidEmail, String>{
 
 	private int min;
+	
 	
 	@Override
 	public void initialize(ValidEmail constraintAnnotation) {
@@ -16,6 +20,7 @@ public class ValidEmailImpl implements ConstraintValidator<ValidEmail, String>{
 
 	@Override
 	public boolean isValid(String email, ConstraintValidatorContext context) {
+		
 		if(email.length() < min) {
 			return false;
 		}
