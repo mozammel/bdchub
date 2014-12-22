@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.livingoncodes.spring.web.validation.UniqueUsername;
 import com.livingoncodes.spring.web.validation.ValidEmail;
 
 @Entity
@@ -29,6 +30,7 @@ public class User {
 	@Size(min=3, max=60, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Pattern(regexp="^\\w{3,}$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="username", unique=true)
+	@UniqueUsername(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	private String username;
 	
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
