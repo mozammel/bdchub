@@ -2,18 +2,23 @@ package com.livingoncodes.spring.web.controllers;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.livingoncodes.spring.web.dao.FormValidationGroup;
-import com.livingoncodes.spring.web.dao.Status;
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.service.UserService;
 
@@ -40,7 +45,7 @@ public class ProfileController {
 	@RequestMapping(value = "/doupdateprofile", method = RequestMethod.POST)
 	public String doCreate(Model model,
 			@Validated(value=FormValidationGroup.class) User user,
-			BindingResult result, Principal principal) {
+			BindingResult result, Principal principal, HttpServletRequest request, HttpServletResponse response) {
 		
 		/**
 		 * If the password entered on the profile update form is blank
@@ -51,16 +56,27 @@ public class ProfileController {
 		
 		System.out.println("Model:::::::::::::::::::::::" + model);
 		
-//		if(user.getPassword().length() == 0) {
-//			userService.update(user);
-//			return "profileupdated";
-//		}
+
 
 		if (result.hasErrors()) {
 			return "profile";
 		}
 
 		userService.update(user);
+		
+		/**
+		 * Check if username has changed, then force logout
+		 * TODO: Update principal name programmatically, then you don't need to logout
+		 */
+		if( !user.getUsername().equals(principal.getName())) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	          if (auth != null){    
+	             new SecurityContextLogoutHandler().logout(request, response, auth);
+	          }
+	        SecurityContextHolder.getContext().setAuthentication(null);
+	        return "forcedloggedout";
+		}
+		
 		return "profileupdated";
 	}
 

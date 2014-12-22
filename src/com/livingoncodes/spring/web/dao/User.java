@@ -31,7 +31,7 @@ public class User {
 	@Size(min=3, max=60, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Pattern(regexp="^\\w{3,}$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="username", unique=true)
-	@UniqueUsername(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@UniqueUsername(groups={FormValidationGroup.class})
 	private String username;
 	
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
@@ -41,7 +41,7 @@ public class User {
 	
 	@ValidEmail(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="email", unique=true)
-	@UniqueEmail(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@UniqueEmail(groups={FormValidationGroup.class})
 	private String email;
 	
 	private boolean enabled = false;

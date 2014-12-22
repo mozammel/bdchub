@@ -31,6 +31,7 @@
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/sendmessage" access="permitAll" />
 		<security:intercept-url pattern="/loggedout" access="permitAll" />
+		<security:intercept-url pattern="/forcedloggedout" access="permitAll" />
 		<security:intercept-url pattern="/newaccount" access="permitAll" />
 		<security:intercept-url pattern="/createaccount" access="permitAll" />
 		<security:intercept-url pattern="/accountcreated" access="permitAll" />
