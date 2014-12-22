@@ -20,6 +20,9 @@ public class CellValueUtil {
 			returnValue = cell.getStringCellValue();
 			break;
 		}
+		if(returnValue.charAt(0) == '\'') {
+			return returnValue.substring(1);
+		}
 		return returnValue;
 	}
 }

@@ -22,6 +22,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.dao.UserDao;
@@ -186,7 +187,7 @@ public class UserDaoTests {
 						userProfile.setSecret(RandomStringUtils.randomAlphanumeric(16));
 						
 						User user = new User("bdcyclist" + count++, fullname, password,
-								email, false, "ROLE_USER");
+								email, true, "ROLE_USER");
 						user.setUserProfile(userProfile);
 
 

@@ -29,6 +29,7 @@ public class UserDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Transactional
 	public void create(User user) {
 
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
