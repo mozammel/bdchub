@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -27,7 +28,7 @@ public class User {
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Size(min=3, max=60, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Pattern(regexp="^\\w{3,}$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
-	@Column(name="username")
+	@Column(name="username", unique=true)
 	private String username;
 	
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})

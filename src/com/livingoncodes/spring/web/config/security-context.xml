@@ -42,6 +42,7 @@
 		<security:intercept-url pattern="/reset" access="permitAll" />
 		<security:intercept-url pattern="/resetpassword" access="permitAll" />
 		<security:intercept-url pattern="/doresetpassword" access="permitAll" />
+		<security:intercept-url pattern="/keyerror" access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:intercept-url pattern="/statuses" access="permitAll" />
 		<security:logout logout-success-url="/loggedout" />

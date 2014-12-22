@@ -103,4 +103,9 @@
 		<put-attribute name="title" value="Logged out"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/forgotPasswordEmailSent.jsp"></put-attribute>
 	</definition>
+
+	<definition name="keyerror" extends="status.base">
+		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/keyerror.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

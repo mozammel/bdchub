@@ -75,13 +75,7 @@ public class LoginController {
 	}
 	
 
-	private String sendMessage(String email, HttpServletRequest request) {
-		
-		User user = usersService.getUserByEmail(email);
-		
-		System.out.println("requestURL: " + request.getRequestURL());
-		System.out.println("requestURI: " + request.getRequestURI());
-		System.out.println("contextPath: " + request.getContextPath());
+	private String sendMessage(User user, HttpServletRequest request) {
 
 		String firstPart = request.getRequestURL().substring(0, 
 				request.getRequestURL().length() - request.getRequestURI().length());
@@ -90,17 +84,17 @@ public class LoginController {
 		String link =  firstPart + context + "/reset?email=" + 
 				user.getEmail() + "&secret=" + user.getUserProfile().getSecret();
 
-		System.out.println("link: " + link);
+		System.out.println(link);
 		
 		
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setFrom("no-reply@bdcyclists.com");
-		mail.setTo(email);
+		mail.setTo(user.getEmail());
 		mail.setSubject("BDCyclists Password Recovery");
-		mail.setText("To reset your password, got to the following link: \n\n" + link);
+		mail.setText("Your username is: " + user.getUsername() + ". To reset your password, got to the following link: \n\n" + link);
 		
 		try {
-//			mailSender.send(mail);
+			mailSender.send(mail);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("cant send message");
@@ -143,7 +137,8 @@ public class LoginController {
 			return "emailnotfound";
 		}
 
-		sendMessage(email, request);
+		User user = usersService.getUserByEmail(email);
+		sendMessage(user, request);
 		return "forgotPasswordEmailSent";
 	}
 	
@@ -165,7 +160,7 @@ public class LoginController {
 				
 			}
 			else {
-				System.out.println("email/key didn't match");
+				return "keyerror";
 			}
 		}
 		else {
