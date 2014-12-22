@@ -78,4 +78,19 @@
 		<put-attribute name="title" value="Logged out"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/loggedout.jsp"></put-attribute>
 	</definition>
+
+	<definition name="forgotpassword" extends="status.base">
+		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/forgotpassword.jsp"></put-attribute>
+	</definition>
+
+	<definition name="emailnotfound" extends="status.base">
+		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/emailnotfound.jsp"></put-attribute>
+	</definition>
+
+	<definition name="forgotPasswordEmailSent" extends="status.base">
+		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/forgotPasswordEmailSent.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

@@ -109,5 +109,15 @@ public class UserDao {
 
 		return user;
 	}
+
+	public User getUserByEmail(String email) {
+		Criteria crit = session().createCriteria(User.class);
+		
+		crit.add(Restrictions.eq("email", email));
+		
+		User user = (User) crit.uniqueResult();
+		
+		return user;
+	}
 	
 }

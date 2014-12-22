@@ -35,8 +35,12 @@
 		<security:intercept-url pattern="/createaccount" access="permitAll" />
 		<security:intercept-url pattern="/accountcreated" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
-		<security:intercept-url pattern="/statuses" access="permitAll" />
+		<security:intercept-url pattern="/forgotpassword" access="permitAll" />
+		<security:intercept-url pattern="/doforgotpassword" access="permitAll" />
+		<security:intercept-url pattern="/emailnotfound" access="permitAll" />
+		<security:intercept-url pattern="/forgotPasswordEmailSent" access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
+		<security:intercept-url pattern="/statuses" access="permitAll" />
 		<security:logout logout-success-url="/loggedout" />
 		<security:access-denied-handler error-page="/denied" />
 		<security:remember-me key="statusesAppKey"

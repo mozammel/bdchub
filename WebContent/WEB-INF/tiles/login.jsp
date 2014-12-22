@@ -69,4 +69,5 @@
 		</form>
 		
 		<p><a href="<c:url value='/newaccount' />">Create new account</a></p>
+		<p><a href="<c:url value='/forgotpassword' />">Forgot password?</a></p>
 	</div>

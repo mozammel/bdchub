@@ -50,4 +50,17 @@ public class UserService {
 
 
 
+	public boolean emailExists(String email) {
+		return userDao.emailExists(email);
+
+	}
+
+
+
+	public User getUserByEmail(String email) {
+		return userDao.getUserByEmail(email);
+	}
+
+
+
 }
