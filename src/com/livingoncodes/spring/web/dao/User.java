@@ -41,7 +41,7 @@ public class User {
 	
 	@ValidEmail(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="email", unique=true)
-	@UniqueEmail(groups={FormValidationGroup.class})
+//	@UniqueEmail(groups={FormValidationGroup.class})
 	private String email;
 	
 	private boolean enabled = false;

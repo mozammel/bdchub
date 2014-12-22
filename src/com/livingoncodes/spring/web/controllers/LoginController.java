@@ -91,7 +91,7 @@ public class LoginController {
 		mail.setFrom("no-reply@bdcyclists.com");
 		mail.setTo(user.getEmail());
 		mail.setSubject("BDCyclists Password Recovery");
-		mail.setText("Your username is: " + user.getUsername() + ". To reset your password, got to the following link: \n\n" + link);
+		mail.setText("Your username is: " + user.getUsername() + ". You will need this when you try to login.\n\nTo reset your password, got to the following link: \n\n" + link);
 		
 		try {
 			mailSender.send(mail);
@@ -173,7 +173,6 @@ public class LoginController {
 	@RequestMapping(value = "/doresetpassword", method = RequestMethod.POST)
 	public String doResetPassword(@Validated(FormValidationGroup.class) User user, BindingResult result) {
 
-		System.out.println("at reset password");
 		
 		if (result.hasErrors()) {
 			return "resetpassword";

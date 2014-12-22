@@ -29,6 +29,15 @@ public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>
 		String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		User loggedInUser = userService.getUser(loggedInUsername);
+		
+		/**
+		 * we will have this null only for password reset case
+		 */
+		if(loggedInUsername.equals("anonymousUser") || loggedInUser == null) {
+			return true;
+		}
+
+		
 		if(user.getId() == loggedInUser.getId()) {
 			return true;
 		}
