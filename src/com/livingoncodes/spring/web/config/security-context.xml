@@ -39,6 +39,9 @@
 		<security:intercept-url pattern="/doforgotpassword" access="permitAll" />
 		<security:intercept-url pattern="/emailnotfound" access="permitAll" />
 		<security:intercept-url pattern="/forgotPasswordEmailSent" access="permitAll" />
+		<security:intercept-url pattern="/reset" access="permitAll" />
+		<security:intercept-url pattern="/resetpassword" access="permitAll" />
+		<security:intercept-url pattern="/doresetpassword" access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:intercept-url pattern="/statuses" access="permitAll" />
 		<security:logout logout-success-url="/loggedout" />

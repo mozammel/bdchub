@@ -2,7 +2,9 @@ package com.livingoncodes.spring.web.controllers;
 
 import java.util.List;
 
-import org.apache.commons.validator.routines.EmailValidator;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -10,7 +12,6 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,20 +75,32 @@ public class LoginController {
 	}
 	
 
-	private String sendMessage(String email) {
+	private String sendMessage(String email, HttpServletRequest request) {
 		
 		User user = usersService.getUserByEmail(email);
 		
-		String link = "test secret: " + user.getUserProfile().getSecret();
+		System.out.println("requestURL: " + request.getRequestURL());
+		System.out.println("requestURI: " + request.getRequestURI());
+		System.out.println("contextPath: " + request.getContextPath());
+
+		String firstPart = request.getRequestURL().substring(0, 
+				request.getRequestURL().length() - request.getRequestURI().length());
+		String context = request.getContextPath();
+		
+		String link =  firstPart + context + "/reset?email=" + 
+				user.getEmail() + "&secret=" + user.getUserProfile().getSecret();
+
+		System.out.println("link: " + link);
+		
 		
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setFrom("no-reply@bdcyclists.com");
 		mail.setTo(email);
 		mail.setSubject("BDCyclists Password Recovery");
-		mail.setText("To reset your password, got to the following link: " + link);
+		mail.setText("To reset your password, got to the following link: \n\n" + link);
 		
 		try {
-			mailSender.send(mail);
+//			mailSender.send(mail);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("cant send message");
@@ -122,7 +135,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/doforgotpassword", method = RequestMethod.POST)
-	public String doForgotPassword(@RequestParam("email") String email) {
+	public String doForgotPassword(@RequestParam("email") String email, HttpServletRequest request) {
 		
 		logger.debug("Email: " + email);
 		
@@ -130,7 +143,52 @@ public class LoginController {
 			return "emailnotfound";
 		}
 
-		sendMessage(email);
+		sendMessage(email, request);
 		return "forgotPasswordEmailSent";
 	}
+	
+	@RequestMapping(value = "/reset", method = RequestMethod.GET)
+	public String doReset(@RequestParam("email") String email, @RequestParam("secret") String secret, Model model) {
+		
+		User user = usersService.getUserByEmail(email);
+		
+		
+		if(user != null) {
+			System.out.println("got user, checking secret");
+			if(user.getUserProfile().getSecret().equals(secret)) {
+				
+				model.addAttribute("user", user);
+				model.addAttribute("secret", secret);
+				
+				
+				return "resetpassword";
+				
+			}
+			else {
+				System.out.println("email/key didn't match");
+			}
+		}
+		else {
+			System.out.println("user not found with this email");
+		}
+		
+		return "forgotPasswordEmailSent";
+	}
+
+	@RequestMapping(value = "/doresetpassword", method = RequestMethod.POST)
+	public String doResetPassword(@Validated(FormValidationGroup.class) User user, BindingResult result) {
+
+		System.out.println("at reset password");
+		
+		if (result.hasErrors()) {
+			return "resetpassword";
+		}
+		
+		user.getUserProfile().setSecret(RandomStringUtils.randomAlphanumeric(16));
+		usersService.update(user);
+
+		return "passwordchanged";
+	}
+
 }
+
