@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.livingoncodes.spring.web.validation.UniqueEmail;
 import com.livingoncodes.spring.web.validation.UniqueUsername;
 import com.livingoncodes.spring.web.validation.ValidEmail;
 
@@ -40,6 +41,7 @@ public class User {
 	
 	@ValidEmail(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="email", unique=true)
+	@UniqueEmail(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	private String email;
 	
 	private boolean enabled = false;
