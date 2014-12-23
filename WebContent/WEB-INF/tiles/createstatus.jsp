@@ -32,11 +32,9 @@
 
 			<c:if test="${status.id != 0}">
 				<!-- Button -->
-				<div class="control-group">
+				<div class="form-group">
 					<label class="control-label" for="submit"></label>
-					<div class="controls">
 						<button id="delete" name="delete" class="btn btn-primary">Delete</button>
-					</div>
 				</div>
 			</c:if>
 

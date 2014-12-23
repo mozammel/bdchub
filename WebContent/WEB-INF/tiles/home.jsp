@@ -3,8 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<div class="col-md-6 col-md-offset-3">
 
 
+	<br />	<br />	
 	<p><a href="${pageContext.request.contextPath}/statuses">Show current statuses</a></p>	
 	<p><a href="${pageContext.request.contextPath}/createstatus">Create Status</a></p>	
 
@@ -26,3 +28,4 @@
 
 
 
+</div>
