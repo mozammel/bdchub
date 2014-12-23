@@ -31,6 +31,7 @@ public class LoginController {
 
 	private UserService usersService;
 
+	// TODO: remove mailSender properties from xml to private property file
 	@Autowired
 	private MailSender mailSender;
 	
@@ -171,7 +172,6 @@ public class LoginController {
 		return "forgotPasswordEmailSent";
 	}
 
-	// TODO: change implementaiton to use jdbc
 	@RequestMapping(value = "/doresetpassword", method = RequestMethod.POST)
 	public String doResetPassword(@Validated(PasswordResetValidationGroup.class) User user, BindingResult result) {
 
