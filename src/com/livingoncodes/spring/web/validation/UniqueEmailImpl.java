@@ -18,6 +18,8 @@ public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>
 	public void initialize(UniqueEmail constraintAnnotation) {
 	}
 
+	
+	// TODO: fix this
 	@Override
 	public boolean isValid(String email, ConstraintValidatorContext context) {
 		User user = userService.getUserByEmail(email);
@@ -30,13 +32,9 @@ public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>
 		
 		User loggedInUser = userService.getUser(loggedInUsername);
 		
-		/**
-		 * we will have this null only for password reset case
-		 */
-		if(loggedInUsername.equals("anonymousUser") || loggedInUser == null) {
+		if( loggedInUser == null) {
 			return true;
 		}
-
 		
 		if(user.getId() == loggedInUser.getId()) {
 			return true;

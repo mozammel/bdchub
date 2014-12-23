@@ -23,14 +23,7 @@ public class UniqueUsernameImpl implements ConstraintValidator<UniqueUsername, S
 	public boolean isValid(String username, ConstraintValidatorContext context) {
 		String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 		
-		System.out.println("Loggedinuser: " + loggedInUsername);
-		/**
-		 * we will have this null only for password reset case
-		 */
-		if(loggedInUsername.equals("anonymousUser")) {
-			return true;
-		}
-		
+	
 		if(!userService.exists(username)) {
 			return true;
 		}

@@ -170,6 +170,7 @@ public class LoginController {
 		return "forgotPasswordEmailSent";
 	}
 
+	// TODO: change implementaiton to use jdbc
 	@RequestMapping(value = "/doresetpassword", method = RequestMethod.POST)
 	public String doResetPassword(@Validated(FormValidationGroup.class) User user, BindingResult result) {
 

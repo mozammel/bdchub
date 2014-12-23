@@ -44,8 +44,8 @@
 		<security:intercept-url pattern="/resetpassword" access="permitAll" />
 		<security:intercept-url pattern="/doresetpassword" access="permitAll" />
 		<security:intercept-url pattern="/keyerror" access="permitAll" />
-		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:intercept-url pattern="/statuses" access="permitAll" />
+		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:logout logout-success-url="/loggedout" />
 		<security:access-denied-handler error-page="/denied" />
 		<security:remember-me key="statusesAppKey"

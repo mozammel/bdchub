@@ -28,7 +28,6 @@ public class UserProfile {
 	
 	private int sex;
 	
-	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Size(min=5, max=30, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="mobileno")
 	private String mobileNo;
