@@ -16,7 +16,9 @@
 		<fieldset>
 
 			<!-- Form Name -->
-			<h1>Login</h1>
+			<div class="form-group">
+				<h1>Log In</h1>
+			</div>
 
 			<!-- Text input-->
 			<div class="form-group">

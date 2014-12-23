@@ -12,7 +12,9 @@
 		<fieldset>
 
 			<!-- Form Name -->
-			<h1>Update Profile</h1>
+			<div class="form-group">
+				<h1>Update Profile</h1>
+			</div>
 
 			<sf:input type="hidden" name="id" path="id" />
 			<sf:input type="hidden" name="enabled" path="enabled" />

@@ -12,7 +12,9 @@
 		<fieldset>
 
 			<!-- Form Name -->
-			<h1>Create Status</h1>
+			<div class="form-group">
+				<h1>Create Status</h1>
+			</div>
 
 			<sf:input type="hidden" name="id" path="id" />
 

@@ -12,7 +12,9 @@
 		<fieldset>
 
 			<!-- Form Name -->
-			<h1>Create User</h1>
+			<div class="form-group">
+				<h1>Create User</h1>
+			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
@@ -61,12 +63,10 @@
 			</div>
 
 			<!-- Button -->
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="submit"></label>
-				<div class="controls">
 					<button id="submit" name="submit" class="btn btn-primary">Create
 						User</button>
-				</div>
 			</div>
 
 		</fieldset>

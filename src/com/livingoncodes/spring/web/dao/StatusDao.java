@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,8 @@ public class StatusDao {
 		Criteria crit = session().createCriteria(Status.class);
 		
 		crit.createAlias("user", "u").add(Restrictions.eq("u.enabled", true));
+		
+		crit.addOrder(Order.desc("id"));
 		
 		return crit.list();
 

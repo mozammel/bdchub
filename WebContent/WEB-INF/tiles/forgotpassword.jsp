@@ -17,7 +17,9 @@
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend>Forgot Password</legend>
+				<div class="form-group">
+					<h1>Forgot Password</h1>
+				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
