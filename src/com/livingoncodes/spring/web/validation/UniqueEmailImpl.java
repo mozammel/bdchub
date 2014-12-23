@@ -19,24 +19,34 @@ public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>
 	}
 
 	
-	// TODO: fix this
 	@Override
 	public boolean isValid(String email, ConstraintValidatorContext context) {
-		User user = userService.getUserByEmail(email);
+
+		User userBeingValidated = userService.getUserByEmail(email);
 		
-		if( user == null) {
+		// if we can't find the email in DB, then the email is new and unique, return true
+		if( userBeingValidated == null) {
 			return true;
 		}
 
+		// get logged in username
 		String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 		
-		User loggedInUser = userService.getUser(loggedInUsername);
 		
-		if( loggedInUser == null) {
+		/**
+		 * for new account creation time email check
+		 */
+		if(loggedInUsername.equals("anonymousUser")) {
+			if( userService.emailExists(email)) {
+				return false;
+			}
 			return true;
 		}
 		
-		if(user.getId() == loggedInUser.getId()) {
+		User loggedInUser = userService.getUser(loggedInUsername);
+		
+		
+		if(userBeingValidated.getId() == loggedInUser.getId()) {
 			return true;
 		}
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.livingoncodes.spring.web.dao.FormValidationGroup;
+import com.livingoncodes.spring.web.dao.PasswordResetValidationGroup;
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.service.UserService;
 
@@ -172,7 +173,7 @@ public class LoginController {
 
 	// TODO: change implementaiton to use jdbc
 	@RequestMapping(value = "/doresetpassword", method = RequestMethod.POST)
-	public String doResetPassword(@Validated(FormValidationGroup.class) User user, BindingResult result) {
+	public String doResetPassword(@Validated(PasswordResetValidationGroup.class) User user, BindingResult result) {
 
 		
 		if (result.hasErrors()) {

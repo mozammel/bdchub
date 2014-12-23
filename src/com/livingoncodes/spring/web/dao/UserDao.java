@@ -1,5 +1,6 @@
 package com.livingoncodes.spring.web.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -34,6 +35,13 @@ public class UserDao {
 
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
+		if(user.getUserProfile().getBirthDate() != null ) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(user.getUserProfile().getBirthDate());
+			cal.add(Calendar.HOUR_OF_DAY, 22);
+			user.getUserProfile().setBirthDate(cal.getTime());
+		}
+		
 		if(!emailExists(user.getEmail())) {
 			session().save(user);
 		}
@@ -60,7 +68,14 @@ public class UserDao {
 		} else {
 			user.setPassword(getPasswordById(user.getId()));
 		}
-		
+
+		if(user.getUserProfile().getBirthDate() != null ) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(user.getUserProfile().getBirthDate());
+			cal.add(Calendar.HOUR_OF_DAY, 22);
+			user.getUserProfile().setBirthDate(cal.getTime());
+		}
+
 		session().update(user);
 		
 	}

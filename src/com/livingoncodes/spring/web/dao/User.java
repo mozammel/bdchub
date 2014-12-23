@@ -36,7 +36,7 @@ public class User {
 	
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Pattern(regexp="^\\S+$", groups={FormValidationGroup.class})
-	@Size(min=4, max=15, groups={FormValidationGroup.class})
+	@Size(min=4, max=15, groups={PasswordResetValidationGroup.class, FormValidationGroup.class})
 	private String password;
 	
 	@ValidEmail(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
