@@ -6,7 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.livingoncodes.spring.web.dao.User;
+import com.livingoncodes.spring.web.domain.User;
 import com.livingoncodes.spring.web.service.UserService;
 
 public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>{
@@ -22,7 +22,7 @@ public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>
 	@Override
 	public boolean isValid(String email, ConstraintValidatorContext context) {
 
-		User userBeingValidated = userService.getUserByEmail(email);
+		User userBeingValidated = userService.findUserByEmail(email);
 		
 		// if we can't find the email in DB, then the email is new and unique, return true
 		if( userBeingValidated == null) {
@@ -44,8 +44,7 @@ public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>
 		}
 		
 		User loggedInUser = userService.getUser(loggedInUsername);
-		
-		
+
 		if(userBeingValidated.getId() == loggedInUser.getId()) {
 			return true;
 		}

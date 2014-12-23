@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.livingoncodes.spring.web.dao.FormValidationGroup;
-import com.livingoncodes.spring.web.dao.User;
+import com.livingoncodes.spring.web.domain.User;
 import com.livingoncodes.spring.web.service.UserService;
 
 @Controller

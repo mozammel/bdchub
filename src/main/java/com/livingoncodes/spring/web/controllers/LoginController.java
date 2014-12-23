@@ -21,14 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.livingoncodes.spring.web.dao.FormValidationGroup;
 import com.livingoncodes.spring.web.dao.PasswordResetValidationGroup;
-import com.livingoncodes.spring.web.dao.User;
+import com.livingoncodes.spring.web.domain.User;
 import com.livingoncodes.spring.web.service.UserService;
 
 @Controller
 public class LoginController {
 
 	private static Logger logger = LoggerFactory.getLogger(ProfileController.class);
-
 
 	private UserService usersService;
 
@@ -140,7 +139,7 @@ public class LoginController {
 			return "emailnotfound";
 		}
 
-		User user = usersService.getUserByEmail(email);
+		User user = usersService.findUserByEmail(email);
 		sendMessage(user, request);
 		return "forgotPasswordEmailSent";
 	}
@@ -148,8 +147,7 @@ public class LoginController {
 	@RequestMapping(value = "/reset", method = RequestMethod.GET)
 	public String doReset(@RequestParam("email") String email, @RequestParam("secret") String secret, Model model) {
 		
-		User user = usersService.getUserByEmail(email);
-		
+		User user = usersService.findUserByEmail(email);
 		
 		if(user != null) {
 			System.out.println("got user, checking secret");
