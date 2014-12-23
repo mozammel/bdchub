@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 
@@ -81,10 +82,20 @@
 					<sf:errors path="userProfile.birthDate" cssClass="alert-danger"></sf:errors>
 			</div>
 
+			
+			<!-- Select Basic -->
+			<div class="form-group">
+			  <label class="control-label" for="userProfile.sex">Select Sex</label>
+			    <sf:select path="userProfile.sex" id="userProfile.sex" name="userProfile.sex" class="form-control">
+			      <option value="0" <c:if test="${user.userProfile.sex == 0}">selected="true"</c:if>>Male</option>
+			      <option value="1" <c:if test="${user.userProfile.sex == 1}">selected="true"</c:if>>Female</option>
+			      <option value="2" <c:if test="${user.userProfile.sex == 2}">selected="true"</c:if>>Other</option>
+			    </sf:select>
+			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="control-label" for="userProfile.birthDate">Mobile</label>
+				<label class="control-label" for="userProfile.mobileNo">Mobile</label>
 					<sf:input id="userProfile.mobileNo" path="userProfile.mobileNo"
 						name="userProfile.mobileNo" placeholder="Mobile no"
 						class="form-control" type="text" />
