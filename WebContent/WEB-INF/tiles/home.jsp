@@ -18,7 +18,13 @@
 		the profile details so that we can contact you in case of emergency.
 		<br /> <br />
 		<p>
-			<a href="<c:url value='/login' />">Log in</a>
+			Registered earlier? Use <a href="<c:url value='/forgotpassword' />">Forgot Password link</a> to get your password.
+		</p>
+		<p>
+			Never Registered? <a href="<c:url value='/newaccount' />">Create New Account</a> to register then.
+		</p>
+		<p>
+			Have account already? <a href="<c:url value='/login' />">Log in!</a>
 		</p>
 	</sec:authorize>
 

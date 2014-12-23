@@ -10,7 +10,7 @@
 	</definition>
 
 	<definition name="home" extends="status.base">
-		<put-attribute name="title" value="Statuses Home"></put-attribute>
+		<put-attribute name="title" value="BDCHub Home"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/home.jsp"></put-attribute>
 	</definition>
 
@@ -40,7 +40,7 @@
 	</definition>
 
 	<definition name="profileupdated" extends="status.base">
-		<put-attribute name="title" value="User Profile"></put-attribute>
+		<put-attribute name="title" value="Profile Updated"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/profileupdated.jsp"></put-attribute>
 	</definition>
 	
@@ -80,37 +80,37 @@
 	</definition>
 
 	<definition name="forgotpassword" extends="status.base">
-		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="title" value="Forgot Password"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/forgotpassword.jsp"></put-attribute>
 	</definition>
 
 	<definition name="emailnotfound" extends="status.base">
-		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="title" value="Email not found"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/emailnotfound.jsp"></put-attribute>
 	</definition>
 
 	<definition name="resetpassword" extends="status.base">
-		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="title" value="Reset Password"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/resetpassword.jsp"></put-attribute>
 	</definition>
 
 	<definition name="passwordchanged" extends="status.base">
-		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="title" value="Password Changed"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/passwordchanged.jsp"></put-attribute>
 	</definition>
 
 	<definition name="forgotPasswordEmailSent" extends="status.base">
-		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="title" value="Email Sent"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/forgotPasswordEmailSent.jsp"></put-attribute>
 	</definition>
 
 	<definition name="keyerror" extends="status.base">
-		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="title" value="Error"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/keyerror.jsp"></put-attribute>
 	</definition>
 
 	<definition name="forcedloggedout" extends="status.base">
-		<put-attribute name="title" value="Logged out"></put-attribute>
+		<put-attribute name="title" value="Forced Logged out"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/forcedloggedout.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>
