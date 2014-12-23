@@ -3,6 +3,8 @@
 .springBeans
 bin
 target/
+build
+out
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath

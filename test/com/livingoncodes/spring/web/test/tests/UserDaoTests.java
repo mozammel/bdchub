@@ -2,7 +2,6 @@ package com.livingoncodes.spring.web.test.tests;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
@@ -22,7 +21,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.livingoncodes.spring.web.dao.User;
 import com.livingoncodes.spring.web.dao.UserDao;
@@ -31,8 +29,8 @@ import com.livingoncodes.spring.web.dao.UserProfileDao;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
-		"classpath:com/livingoncodes/spring/web/config/dao-context.xml",
-		"classpath:com/livingoncodes/spring/web/config/security-context.xml",
+		"classpath:spring/dao-context.xml",
+		"classpath:spring/security-context.xml",
 		"classpath:com/livingoncodes/spring/web/test/config/datasource.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserDaoTests {
