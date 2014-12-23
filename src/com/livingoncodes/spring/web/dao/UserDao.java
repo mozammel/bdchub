@@ -3,6 +3,7 @@ package com.livingoncodes.spring.web.dao;
 import java.util.Calendar;
 import java.util.List;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,6 +35,8 @@ public class UserDao {
 	public void create(User user) {
 
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		
+		user.getUserProfile().setSecret(RandomStringUtils.randomAlphanumeric(16));
 		
 		if(user.getUserProfile().getBirthDate() != null ) {
 			Calendar cal = Calendar.getInstance();

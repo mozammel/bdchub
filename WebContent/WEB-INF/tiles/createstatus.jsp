@@ -12,27 +12,22 @@
 		<fieldset>
 
 			<!-- Form Name -->
-			<legend>Create Status</legend>
+			<h1>Create Status</h1>
 
 			<sf:input type="hidden" name="id" path="id" />
 
 			<!-- Textarea -->
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="text">Status</label>
-				<div class="controls">
-					<sf:textarea id="text" path="text" name="text"></sf:textarea>
+					<sf:textarea id="text" path="text" name="text" class="form-control"></sf:textarea>
 					<sf:errors path="text" cssClass="alert-danger"></sf:errors>
-
-				</div>
 			</div>
 
 			<!-- Button -->
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="submit"></label>
-				<div class="controls">
 					<button id="submit" name="submit" class="btn btn-primary">Save
 						Status</button>
-				</div>
 			</div>
 
 			<c:if test="${status.id != 0}">

@@ -20,13 +20,10 @@
 				<legend>Forgot Password</legend>
 
 				<!-- Text input-->
-				<div class="control-group">
+				<div class="form-group">
 					<label class="control-label" for="email">Enter your email</label>
-					<div class="controls">
 						<input id="email" name="email" placeholder=""
-							class="input-xlarge" type="text">
-
-					</div>
+							class="form-control" type="text">
 				</div>
 
 				<div class="alert-danger">
@@ -37,11 +34,8 @@
 				</div>
 
 				<!-- Button -->
-				<div class="control-group">
-					<label class="control-label" for="submit"></label>
-					<div class="controls">
+				<div class="form-group">
 						<button id="submit" name="submit" class="btn btn-primary">Submit</button>
-					</div>
 				</div>
 
 			</fieldset>
