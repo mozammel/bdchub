@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.livingoncodes.spring.web.dao.FormValidationGroup;
-import com.livingoncodes.spring.web.dao.Status;
-import com.livingoncodes.spring.web.dao.User;
+import com.livingoncodes.spring.web.domain.Status;
+import com.livingoncodes.spring.web.domain.User;
 import com.livingoncodes.spring.web.service.StatusService;
 import com.livingoncodes.spring.web.service.UserService;
 
@@ -89,7 +89,5 @@ public class StatusController {
 			statusService.delete(status.getId());
 			return "statusdeleted";
 		}
-		
-		
 	}
 }

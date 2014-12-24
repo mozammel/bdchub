@@ -1,4 +1,4 @@
-package com.livingoncodes.spring.web.dao;
+package com.livingoncodes.spring.web.domain;
 
 import java.util.Date;
 
@@ -11,7 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotBlank;
+import com.livingoncodes.spring.web.dao.FormValidationGroup;
+import com.livingoncodes.spring.web.dao.PersistenceValidationGroup;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -20,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class UserProfile {
 	
 	@Id @GeneratedValue
-	private int id; 
+	private Long id;
 
 	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name="birthdate")
@@ -79,11 +80,11 @@ public class UserProfile {
 		this.temppass = temppass;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -143,7 +144,7 @@ public class UserProfile {
 		this.facebookProfile = facebookProfile;
 	}
 
-	public UserProfile(int id, Date birthDate, int sex, String mobileNo,
+	public UserProfile(Long id, Date birthDate, int sex, String mobileNo,
 			String bloodGroup, String address, String emergency,
 			String facebookProfile) {
 		this.id = id;
@@ -157,10 +158,5 @@ public class UserProfile {
 	}
 
 	public UserProfile() {
-		
 	}
-
-	
-	
-	
 }

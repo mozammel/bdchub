@@ -1,4 +1,7 @@
-package com.livingoncodes.spring.web.dao;
+package com.livingoncodes.spring.web.domain;
+
+import com.livingoncodes.spring.web.dao.FormValidationGroup;
+import com.livingoncodes.spring.web.dao.PersistenceValidationGroup;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +18,7 @@ public class Status {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Long id;
 	
 	@Size(min=20, max=255, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="text")
@@ -24,20 +27,17 @@ public class Status {
 	@ManyToOne
 	@JoinColumn(name="user_id", referencedColumnName="id")
 	private User user;
-	
-	
-	
+
 	public Status() {
 		this.user = new User();
 	}
-	
-	
+
 	public Status(User user, String text) {
 		this.user = user;
 		this.text = text;
 	}
 
-	public Status(int id, User user, String text) {
+	public Status(Long id, User user, String text) {
 		this.id = id;
 		this.user = user;
 		this.text = text;
@@ -47,19 +47,15 @@ public class Status {
 		return user;
 	}
 
-
-
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -71,19 +67,15 @@ public class Status {
 		this.text = text;
 	}
 
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = (int) (prime * result + id);
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -110,12 +102,9 @@ public class Status {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "Status [id=" + id + ", text=" + text + ", user=" + user + "]";
 	}
 
-
-	
 }

@@ -1,4 +1,4 @@
-package com.livingoncodes.spring.web.dao;
+package com.livingoncodes.spring.web.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.livingoncodes.spring.web.dao.FormValidationGroup;
+import com.livingoncodes.spring.web.dao.PasswordResetValidationGroup;
+import com.livingoncodes.spring.web.dao.PersistenceValidationGroup;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.livingoncodes.spring.web.validation.UniqueEmail;
@@ -25,7 +27,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue
-	private int id; 
+	private Long id;
 
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Size(min=3, max=60, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
@@ -119,11 +121,11 @@ public class User {
 	
 	
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
