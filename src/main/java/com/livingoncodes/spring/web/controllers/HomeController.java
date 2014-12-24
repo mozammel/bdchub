@@ -23,20 +23,18 @@ public class HomeController {
 	@RequestMapping("/")
 	public String  showHome(Model model, Principal principal) {
 		
-		
-		
-		logger.info("Showing home for user: " + principal.getName());
-		
-		User user = userService.getUser(principal.getName());
-		
-		if(user != null) {
-			String fbLink = user.getUserProfile().getFacebookProfile();
-			if(fbLink.length() > 0) {
-				// get username from fb link
-				String facebookUserName = fbLink.substring(fbLink.lastIndexOf("/")+1);
-
-				
-				model.addAttribute("facebookUserName", facebookUserName);
+		if( principal != null) {
+			User user = userService.getUser(principal.getName());
+			
+			if(user != null) {
+				String fbLink = user.getUserProfile().getFacebookProfile();
+				if(fbLink.length() > 0) {
+					// get username from fb link
+					String facebookUserName = fbLink.substring(fbLink.lastIndexOf("/")+1);
+	
+					
+					model.addAttribute("facebookUserName", facebookUserName);
+				}
 			}
 		}
 		
