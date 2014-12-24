@@ -6,6 +6,9 @@ apply plugin: 'rebel'
 
 println "PROJECT=" + project.name
 
+group = 'com.livingoncodes.spring.web'
+version = '0.1-SNAPSHOT'
+
 buildscript {
     repositories {
         mavenCentral()
@@ -88,6 +91,7 @@ dependencies {
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
+    compile 'commons-lang:commons-lang:2.3'
 }
 
 
