@@ -34,7 +34,7 @@
 			<div class="row">
 			  <div class="col-sm-2">
 			  	<br />
-			  	<img src="http://graph.facebook.com/<c:out value='${facebookUserName}' />/picture?&width=90" />
+			  	<img src="http://graph.facebook.com/<c:out value='${facebookUserName}' />/picture?&width=110" width="110px"/>
 			  
 			  </div>
 			  <div class="col-sm-10">

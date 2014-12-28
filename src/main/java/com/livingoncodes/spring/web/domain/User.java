@@ -37,7 +37,7 @@ public class User {
 	private String username;
 	
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
-	@Pattern(regexp="^\\S+$", groups={FormValidationGroup.class})
+	@Pattern(regexp="^\\S+$", groups={PasswordResetValidationGroup.class, FormValidationGroup.class})
 	@Size(min=4, max=15, groups={PasswordResetValidationGroup.class, FormValidationGroup.class})
 	private String password;
 	
