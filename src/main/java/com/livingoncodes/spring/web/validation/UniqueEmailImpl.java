@@ -47,7 +47,7 @@ public class UniqueEmailImpl implements ConstraintValidator<UniqueEmail, String>
 
 		System.out.println("*.*.*.*.*.*.*.*.*. :: userBeingValidateId: " + userBeingValidated.getId() + " Loggedinuserid: " + loggedInUser.getId());
 		
-		if(userBeingValidated.getId() == loggedInUser.getId()) {
+		if(userBeingValidated.getId().equals(loggedInUser.getId())) {
 			return true;
 		}
 
