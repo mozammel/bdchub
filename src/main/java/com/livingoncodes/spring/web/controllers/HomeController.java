@@ -28,6 +28,11 @@ public class HomeController {
 			
 			if(user != null) {
 				String fbLink = user.getUserProfile().getFacebookProfile();
+				
+				if(fbLink == null) {
+					return "home";
+				}
+				
 				if(fbLink.length() > 0) {
 					// get username from fb link
 					String facebookUserName = fbLink.substring(fbLink.lastIndexOf("/")+1);
