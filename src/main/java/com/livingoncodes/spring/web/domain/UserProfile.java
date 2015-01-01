@@ -159,4 +159,20 @@ public class UserProfile {
 
 	public UserProfile() {
 	}
+
+	@Override
+	public String toString() {
+		return "UserProfile{" +
+				"birthDate=" + birthDate +
+				", sex=" + sex +
+				", mobileNo='" + mobileNo + '\'' +
+				", bloodGroup='" + bloodGroup + '\'' +
+				", address='" + address + '\'' +
+				", emergency='" + emergency + '\'' +
+				", facebookProfile='" + facebookProfile + '\'' +
+				", temppass='" + temppass + '\'' +
+				", secret='" + secret + '\'' +
+				", user=" + user +
+				'}';
+	}
 }

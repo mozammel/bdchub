@@ -113,4 +113,9 @@
 		<put-attribute name="title" value="Forced Logged out"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/forcedloggedout.jsp"></put-attribute>
 	</definition>
+
+	<definition name="userdetails" extends="status.base">
+		<put-attribute name="title" value="User Details"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/userdetails.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

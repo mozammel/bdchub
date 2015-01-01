@@ -4,6 +4,7 @@ import com.livingoncodes.spring.web.dao.UserDao;
 import com.livingoncodes.spring.web.domain.User;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -59,7 +60,7 @@ public class UserService {
     @Secured("ROLE_ADMIN")
     public List<User> getAllUsers() {
 
-        return userDao.findAll();
+        return userDao.findAll(new Sort(Sort.Direction.ASC, "fullname"));
     }
 
     public void update(User user) {

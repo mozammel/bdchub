@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.livingoncodes.spring.web.dao.FormValidationGroup;
 import com.livingoncodes.spring.web.domain.User;
 import com.livingoncodes.spring.web.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileController {
@@ -28,6 +29,14 @@ public class ProfileController {
 
 	@Autowired
 	private UserService userService;
+
+
+	@RequestMapping("/userdetails")
+	public String userDetails(@RequestParam("username") String username, Model model) {
+		User user = userService.getUser(username);
+		model.addAttribute("user", user);
+		return "userdetails";
+	}
 
 	@RequestMapping("/profile")
 	public String showProfile(Model model, Principal principal) {
